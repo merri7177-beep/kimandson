@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-primary: #4e6e58; /* Warm forest green */
+  --color-primary-dark: #374f3e;
+  --color-secondary: #8fa882; /* Soft olive green */
+  --color-accent: #d89f65; /* Warm terracotta/apricot */
+  --color-bg-cozy: #f8f6f0; /* Cozy warm cream/beige */
+  --color-card-bg: #ffffff;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Noto Serif KR', sans-serif;
+  background-color: var(--color-bg-cozy);
+  color: #2f3e35;
+  overflow-x: hidden;
+}
+
+/* Big title styling */
+.main-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-primary-dark);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2.25rem;
+  }
+}
+
+/* 3D Button - Primary */
+.btn-3d {
+  position: relative;
+  background: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  padding: 14px 28px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  box-shadow: 0 6px 0 var(--color-primary-dark), 0 10px 15px rgba(55, 79, 62, 0.2);
+  transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.btn-3d:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 0 var(--color-primary-dark), 0 15px 20px rgba(55, 79, 62, 0.25);
+  background: #567961;
+}
+
+.btn-3d:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 var(--color-primary-dark), 0 4px 6px rgba(55, 79, 62, 0.15);
+}
+
+/* 3D Button - Secondary (Cozy/Accent) */
+.btn-3d-secondary {
+  position: relative;
+  background: var(--color-card-bg);
+  color: var(--color-primary-dark);
+  border: 2px solid var(--color-primary);
+  border-radius: 16px;
+  padding: 12px 26px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  box-shadow: 0 6px 0 var(--color-primary), 0 10px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.btn-3d-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 0 var(--color-primary), 0 15px 20px rgba(0, 0, 0, 0.1);
+  background: #fbfbfa;
+}
+
+.btn-3d-secondary:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 var(--color-primary), 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* 3D Button - Accent */
+.btn-3d-accent {
+  position: relative;
+  background: var(--color-accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  padding: 14px 28px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  box-shadow: 0 6px 0 #b37b43, 0 10px 15px rgba(179, 123, 67, 0.2);
+  transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.btn-3d-accent:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 0 #b37b43, 0 15px 20px rgba(179, 123, 67, 0.25);
+  background: #dfaa74;
+}
+
+.btn-3d-accent:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #b37b43, 0 4px 6px rgba(179, 123, 67, 0.15);
+}
+
+/* Habit Program Checklist Option Style */
+.checklist-option {
+  transition: all 0.2s ease;
+  border: 2px solid #e2e8f0;
+}
+
+.checklist-option:hover {
+  border-color: var(--color-secondary);
+  background-color: rgba(143, 168, 130, 0.08);
+}
+
+.checklist-option.selected {
+  border-color: var(--color-primary);
+  background-color: rgba(78, 110, 88, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(78, 110, 88, 0.1), 0 2px 4px -1px rgba(78, 110, 88, 0.06);
+}
+
+/* Custom card depth */
+.card-cozy {
+  background: var(--color-card-bg);
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(47, 62, 53, 0.03), 0 2px 8px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(143, 168, 130, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-cozy:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(47, 62, 53, 0.06), 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-cozy);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Floating animation for subtle background movement */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.floating-element {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Guestbook card style */
+.guest-card {
+  border-left: 5px solid var(--color-secondary);
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+.guest-card:hover {
+  border-left-color: var(--color-accent);
+  transform: translateX(4px);
+}
