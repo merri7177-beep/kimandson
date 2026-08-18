@@ -505,7 +505,7 @@ function setupAmbientAnimations() {
       
       // Randomize layout properties
       const startX = Math.random() * 100; // X position in %
-      const scale = 0.5 + Math.random() * 0.8; // Size variation (0.5x ~ 1.3x)
+      const scale = 1.0 + Math.random() * 1.6; // Size variation doubled (1.0x ~ 2.6x)
       const durationFall = 6 + Math.random() * 4; // Fall duration (6s ~ 10s)
       const durationSway = 3 + Math.random() * 2; // Sway duration (3s ~ 5s)
       const delay = Math.random() * 2; // Delay to make them fall naturally
@@ -540,7 +540,7 @@ function setupAmbientAnimations() {
       
       bird.className = `ambient-bird ${isLeft ? 'bird-fly-left-to-right' : 'bird-fly-right-to-left'}`;
       
-      const scale = 0.5 + Math.random() * 0.6; // size
+      const scale = 1.0 + Math.random() * 1.2; // size doubled (1.0x ~ 2.2x)
       const delay = Math.random() * 3; // stagger start times
       const topOffset = Math.random() * 25; // altitude variation
 
