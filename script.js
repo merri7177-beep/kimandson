@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Guestbook Logic
   setupGuestbook();
+
+  // Ambient animations for falling leaves and flying birds
+  setupAmbientAnimations();
 });
 
 // 1. Health Habit Checklist Program
@@ -463,3 +466,113 @@ function setupGuestbook() {
       .replace(/'/g, '&#039;');
   }
 }
+
+// 3. Ambient Animations (Leaves & Birds)
+function setupAmbientAnimations() {
+  // Create containers for leaves and birds
+  const leafContainer = document.createElement('div');
+  leafContainer.className = 'ambient-leaf-container';
+  document.body.appendChild(leafContainer);
+
+  const birdContainer = document.createElement('div');
+  birdContainer.className = 'ambient-bird-container';
+  document.body.appendChild(birdContainer);
+
+  // SVG path for a realistic leaf
+  const leafSVG = `
+    <svg viewBox="0 0 24 24" class="ambient-leaf">
+      <path d="M17 8C8 10 7 19 7 19S11 14 17 13C19.5 12.6 20 10 20 8C20 6 18.5 4.5 17 4C17 4 17.5 6 17 8Z" />
+      <path d="M7 19C7 19 5.5 20.5 4 22" stroke="#374f3e" stroke-width="1.2" stroke-linecap="round" />
+    </svg>
+  `;
+
+  // SVG path for a realistic bird (body and flapping wings)
+  const birdSVG = `
+    <svg viewBox="0 0 32 32" class="ambient-bird-svg">
+      <path class="bird-wing-left" d="M16 16 C12 8, 4 12, 6 18 C8 24, 14 18, 16 16 Z" />
+      <path class="bird-wing-right" d="M16 16 C20 8, 28 12, 26 18 C24 24, 18 18, 16 16 Z" />
+      <path class="bird-body" d="M12 18 Q16 13 20 18 Q16 22 12 18 Z M19 16 C20 15, 21 15, 21 16 Z M20 17 L24 16 L20 18 Z" />
+    </svg>
+  `;
+
+  function spawnLeaves() {
+    const leafCount = 5 + Math.floor(Math.random() * 4); // 5 ~ 8 leaves
+    const colors = ['#8fa882', '#4e6e58', '#6b8e23', '#d89f65', '#c58b52']; // greens and warm autumn colors
+
+    for (let i = 0; i < leafCount; i++) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'ambient-leaf-wrapper';
+      
+      // Randomize layout properties
+      const startX = Math.random() * 100; // X position in %
+      const scale = 0.5 + Math.random() * 0.8; // Size variation (0.5x ~ 1.3x)
+      const durationFall = 6 + Math.random() * 4; // Fall duration (6s ~ 10s)
+      const durationSway = 3 + Math.random() * 2; // Sway duration (3s ~ 5s)
+      const delay = Math.random() * 2; // Delay to make them fall naturally
+      const color = colors[Math.floor(Math.random() * colors.length)];
+
+      wrapper.style.left = `${startX}%`;
+      wrapper.style.animationDuration = `${durationFall}s`;
+      wrapper.style.animationDelay = `${delay}s`;
+      wrapper.innerHTML = leafSVG;
+
+      const leaf = wrapper.querySelector('.ambient-leaf');
+      leaf.style.animationDuration = `${durationSway}s`;
+      leaf.style.width = `${24 * scale}px`;
+      leaf.style.height = `${24 * scale}px`;
+      leaf.style.fill = color;
+
+      leafContainer.appendChild(wrapper);
+
+      // Clean up after animation ends
+      setTimeout(() => {
+        wrapper.remove();
+      }, (durationFall + delay) * 1000);
+    }
+  }
+
+  function spawnBirds() {
+    const birdCount = 1 + Math.floor(Math.random() * 2); // 1 ~ 2 birds
+    
+    for (let i = 0; i < birdCount; i++) {
+      const bird = document.createElement('div');
+      const isLeft = Math.random() > 0.5;
+      
+      bird.className = `ambient-bird ${isLeft ? 'bird-fly-left-to-right' : 'bird-fly-right-to-left'}`;
+      
+      const scale = 0.5 + Math.random() * 0.6; // size
+      const delay = Math.random() * 3; // stagger start times
+      const topOffset = Math.random() * 25; // altitude variation
+
+      bird.style.transform = `scale(${scale})`;
+      bird.style.animationDelay = `${delay}s`;
+      bird.style.top = `${55 + topOffset}%`; // start around lower-middle screen height
+      bird.innerHTML = birdSVG;
+
+      // Randomize flap speed slightly
+      const wings = bird.querySelectorAll('.bird-wing-left, .bird-wing-right');
+      const flapSpeed = 0.2 + Math.random() * 0.15;
+      wings.forEach(wing => {
+        wing.style.animationDuration = `${flapSpeed}s`;
+      });
+
+      birdContainer.appendChild(bird);
+
+      // Clean up
+      setTimeout(() => {
+        bird.remove();
+      }, (9.5 + delay) * 1000);
+    }
+  }
+
+  // Trigger animations
+  spawnLeaves();
+  spawnBirds();
+
+  // Run every 10 seconds
+  setInterval(() => {
+    spawnLeaves();
+    spawnBirds();
+  }, 10000);
+}
+
